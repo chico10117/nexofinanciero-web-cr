@@ -76,6 +76,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "es_CR" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Nexo Financiero CR | Contabilidad, Impuestos y Consultoría Financiera en Costa Rica" },
+      { name: "twitter:title", content: "Nexo Financiero CR | Contabilidad, Impuestos y Consultoría Financiera en Costa Rica" },
+      { property: "og:description", content: "Servicios contables, tributarios, financieros y de auditoría para PYMES, empresas agrícolas, agroindustriales y emprendedores en Costa Rica." },
+      { name: "twitter:description", content: "Servicios contables, tributarios, financieros y de auditoría para PYMES, empresas agrícolas, agroindustriales y emprendedores en Costa Rica." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4542d11a-085e-403c-a729-ba6ae7f8771a/id-preview-3886d5bd--541a9545-64ec-4796-92a8-2839f8428c36.lovable.app-1782339254026.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4542d11a-085e-403c-a729-ba6ae7f8771a/id-preview-3886d5bd--541a9545-64ec-4796-92a8-2839f8428c36.lovable.app-1782339254026.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
