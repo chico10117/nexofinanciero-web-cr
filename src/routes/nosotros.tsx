@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, SectionHeader } from "../components/site/PageHero";
-import { CheckCircle2, Target, Eye, Award, ShieldCheck, Sparkles, Heart, Lock, Lightbulb, HandshakeIcon } from "lucide-react";
+import { CheckCircle2, Target, Eye, Award, ShieldCheck, Sparkles, Heart, Lock, Lightbulb, Handshake } from "lucide-react";
 
 export const Route = createFileRoute("/nosotros")({
   head: () => ({
