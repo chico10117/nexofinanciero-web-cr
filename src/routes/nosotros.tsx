@@ -23,7 +23,7 @@ const valores = [
   { icon: Award, t: "Excelencia" },
   { icon: Lightbulb, t: "Innovación" },
   { icon: Heart, t: "Compromiso" },
-  { icon: HandshakeIcon, t: "Confianza" },
+  { icon: Handshake, t: "Confianza" },
 ];
 
 function Nosotros() {
