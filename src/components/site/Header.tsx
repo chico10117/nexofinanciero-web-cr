@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 
+const logoSrc = `${import.meta.env.BASE_URL}nexo-logo.png`;
+
 const NAV = [
   { to: "/", label: "Inicio" },
   { to: "/nosotros", label: "Nosotros" },
@@ -19,7 +21,7 @@ export function Header() {
       <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
         <Link to="/" className="flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
           <img
-            src="/nexo-logo.png"
+            src={logoSrc}
             alt=""
             width={44}
             height={44}

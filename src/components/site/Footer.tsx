@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
 
+const logoSrc = `${import.meta.env.BASE_URL}nexo-logo.png`;
+
 export function Footer() {
   return (
     <footer className="mt-20 bg-primary text-white">
@@ -8,7 +10,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-2.5">
             <img
-              src="/nexo-logo.png"
+              src={logoSrc}
               alt=""
               width={48}
               height={48}
