@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A marketing/content site for **Nexo Financiero CR** (a Costa Rican accounting/tax/finance firm). Spanish-language (`es-CR`), SSR-rendered, scaffolded by Lovable. It is mostly static content pages plus a static blog; Supabase is wired in but the public pages do not currently query it.
+A marketing/content site for **Nexo Financiero CR** (a Costa Rican accounting/tax/finance firm). Spanish-language (`es-CR`), SSR-rendered, and mostly static content pages plus a static blog. Supabase is wired in, but the public pages do not currently query it.
 
 ## Commands
 
@@ -24,7 +24,7 @@ No test framework is configured. Validate changes with `lint`, `tsc --noEmit`, `
 
 TanStack Start + TanStack Router (file-based) + React 19, Tailwind v4, shadcn/Radix UI, served via Nitro targeting **Cloudflare**.
 
-The Vite config is driven by `@lovable.dev/vite-tanstack-config` (`vite.config.ts`). It already injects `tanstackStart`, `viteReact`, `tailwindcss`, `tsConfigPaths`, `nitro`, the `@/*` alias, `VITE_*` env injection, and dev-only error/tagger plugins. **Do not add those plugins manually** — duplicates break the build. Add extra config through `defineConfig({ vite: { ... } })`.
+`vite.config.ts` wires the build directly with first-party plugins: `@tailwindcss/vite`, `@tanstack/react-start/plugin/vite`, `vite-tsconfig-paths`, Nitro for production builds, and `@vitejs/plugin-react`. Keep TanStack Start before React so route generation and server compilation work correctly.
 
 ## Routing
 
@@ -44,17 +44,17 @@ Blog posts are **static data, not a CMS**: `src/lib/blog-posts.ts` exports `BLOG
 Three client flavors in `src/integrations/supabase/` (all generated — header `Do not edit`):
 
 - `client.ts` — browser/anon client (`VITE_SUPABASE_*`, falls back to `process.env` during SSR). Exported as a lazy `Proxy` so the client is only constructed on first use.
-- `client.server.ts` — **service-role** admin client that bypasses RLS. Import it lazily *inside* server handlers (`const { supabaseAdmin } = await import("@/integrations/supabase/client.server")`); a top-level import is only safe in other `*.server.ts` modules, because route and `*.functions.ts` files ship to the client bundle.
+- `client.server.ts` — **service-role** admin client that bypasses RLS. Import it lazily _inside_ server handlers (`const { supabaseAdmin } = await import("@/integrations/supabase/client.server")`); a top-level import is only safe in other `*.server.ts` modules, because route and `*.functions.ts` files ship to the client bundle.
 - `auth-middleware.ts` / `auth-attacher.ts` — request-scoped, RLS-respecting client for user-authenticated queries.
 
 The custom `fetch` wrapper handles the new opaque Supabase API key format (`sb_publishable_` / `sb_secret_`): it sets the `apikey` header and strips the bearer `Authorization` header those keys don't use.
 
 ## SSR error handling
 
-`src/server.ts` is the custom server entry (wired via `tanstackStart.server.entry` in the Vite config). It wraps the TanStack Start fetch handler to catch SSR failures — including h3's habit of swallowing in-handler throws into a `{"unhandled":true,"message":"HTTPError"}` 500 body — and renders `renderErrorPage()` instead. Client/runtime errors are reported through `src/lib/lovable-error-reporting.ts` and the `errorComponent` in `__root.tsx`.
+`src/server.ts` is the custom server entry (wired via `tanstackStart.server.entry` in the Vite config). It wraps the TanStack Start fetch handler to catch SSR failures — including h3's habit of swallowing in-handler throws into a `{"unhandled":true,"message":"HTTPError"}` 500 body — and renders `renderErrorPage()` instead. Client/runtime errors are surfaced through the `errorComponent` in `__root.tsx`.
 
 ## Conventions worth remembering
 
 - Imports use the `@/*` alias for `src`. UI primitives are shadcn (`new-york` style, `slate` base) in `src/components/ui/` — reuse them before writing custom components/CSS.
-- `bunfig.toml` enforces a 24h supply-chain delay on new packages (`minimumReleaseAge`); only the `@lovable.dev/*` packages are excluded. Confirm with the user before adding exclusions.
+- `bunfig.toml` enforces a 24h supply-chain delay on new packages (`minimumReleaseAge`). Confirm with the user before adding exclusions.
 - This is TanStack Start, **not** Next.js/Remix: no `src/pages/`, no `app/layout.tsx`, and avoid `server-only`-style packages.
