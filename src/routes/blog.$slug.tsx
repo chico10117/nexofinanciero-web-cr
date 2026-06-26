@@ -141,7 +141,7 @@ function BlogPostPage() {
 
       <article className="section-y">
         <div className="container-page max-w-3xl">
-          {post.content.map((block, idx) => renderBlock(block, idx))}
+          {post.content.map((block: BlogBlock, idx: number) => renderBlock(block, idx))}
 
           <div className="mt-12 rounded-2xl border border-border bg-card p-6 shadow-card">
             <h3 className="font-display text-lg font-semibold text-primary">¿Necesita ayuda con este tema?</h3>
