@@ -13,6 +13,15 @@ import appCss from "../styles.css?url";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
 import { WhatsAppFloat } from "../components/site/WhatsApp";
+import {
+  absolutePublicAssetUrl,
+  defaultDescription,
+  defaultTitle,
+  publicAssetUrl,
+  siteName,
+  siteUrl,
+  socialImageAlt,
+} from "../lib/site-metadata";
 
 function NotFoundComponent() {
   return (
@@ -78,40 +87,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        title:
-          "Nexo Financiero CR | Contabilidad, Impuestos y Consultoría Financiera en Costa Rica",
-      },
-      {
-        name: "description",
-        content:
-          "Servicios contables, tributarios, financieros y de auditoría para PYMES, empresas agrícolas, agroindustriales y emprendedores en Costa Rica.",
-      },
-      { name: "author", content: "Nexo Financiero CR" },
-      { property: "og:site_name", content: "Nexo Financiero CR" },
+      { name: "theme-color", content: "#071529" },
+      { title: defaultTitle },
+      { name: "description", content: defaultDescription },
+      { name: "author", content: siteName },
+      { property: "og:site_name", content: siteName },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "es_CR" },
+      { property: "og:url", content: siteUrl },
+      { property: "og:image", content: absolutePublicAssetUrl("social-share.jpg") },
+      { property: "og:image:secure_url", content: absolutePublicAssetUrl("social-share.jpg") },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: socialImageAlt },
       { name: "twitter:card", content: "summary_large_image" },
-      {
-        property: "og:title",
-        content:
-          "Nexo Financiero CR | Contabilidad, Impuestos y Consultoría Financiera en Costa Rica",
-      },
-      {
-        name: "twitter:title",
-        content:
-          "Nexo Financiero CR | Contabilidad, Impuestos y Consultoría Financiera en Costa Rica",
-      },
-      {
-        property: "og:description",
-        content:
-          "Servicios contables, tributarios, financieros y de auditoría para PYMES, empresas agrícolas, agroindustriales y emprendedores en Costa Rica.",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Servicios contables, tributarios, financieros y de auditoría para PYMES, empresas agrícolas, agroindustriales y emprendedores en Costa Rica.",
-      },
+      { name: "twitter:image", content: absolutePublicAssetUrl("social-share.jpg") },
+      { name: "twitter:image:alt", content: socialImageAlt },
+      { property: "og:title", content: defaultTitle },
+      { name: "twitter:title", content: defaultTitle },
+      { property: "og:description", content: defaultDescription },
+      { name: "twitter:description", content: defaultDescription },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -131,6 +127,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "Nexo Financiero CR",
           description:
             "Firma de contabilidad, impuestos, auditoría y consultoría financiera en Costa Rica.",
+          url: siteUrl,
+          logo: absolutePublicAssetUrl("icon-512.png"),
+          image: absolutePublicAssetUrl("social-share.jpg"),
           areaServed: "CR",
           email: "info@nexofinanciero.cr",
           telephone: "+506 6225 3851",
@@ -149,6 +148,25 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="es-CR">
       <head>
+        <link rel="icon" href={publicAssetUrl("favicon.ico")} sizes="any" />
+        <link
+          rel="icon"
+          href={publicAssetUrl("favicon-32x32.png")}
+          type="image/png"
+          sizes="32x32"
+        />
+        <link
+          rel="icon"
+          href={publicAssetUrl("favicon-16x16.png")}
+          type="image/png"
+          sizes="16x16"
+        />
+        <link
+          rel="apple-touch-icon"
+          href={publicAssetUrl("apple-touch-icon.png")}
+          sizes="180x180"
+        />
+        <link rel="manifest" href={publicAssetUrl("site.webmanifest")} />
         <HeadContent />
       </head>
       <body>

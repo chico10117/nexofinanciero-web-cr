@@ -2,7 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 
-const logoSrc = `${import.meta.env.BASE_URL}nexo-logo.png`;
+import { publicAssetUrl } from "../../lib/site-metadata";
+
+const logoSrc = publicAssetUrl("nexo-logo-256.webp");
 
 const NAV = [
   { to: "/", label: "Inicio" },

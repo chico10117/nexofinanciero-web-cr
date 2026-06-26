@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
 
-const logoSrc = `${import.meta.env.BASE_URL}nexo-logo.png`;
+import { publicAssetUrl } from "../../lib/site-metadata";
+
+const logoSrc = publicAssetUrl("nexo-logo-256.webp");
 
 export function Footer() {
   return (
