@@ -18,10 +18,21 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
         <Link to="/" className="flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg gradient-accent font-display text-lg font-black text-white">N</span>
+          <img
+            src="/nexo-logo.png"
+            alt=""
+            width={44}
+            height={44}
+            className="h-11 w-11 shrink-0 object-contain"
+            aria-hidden="true"
+          />
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="truncate font-display text-base font-bold text-primary">Nexo Financiero CR</span>
-            <span className="hidden text-[11px] text-muted-foreground sm:block">Su aliado en su crecimiento financiero</span>
+            <span className="truncate font-display text-base font-bold text-primary">
+              Nexo Financiero CR
+            </span>
+            <span className="hidden text-[11px] text-muted-foreground sm:block">
+              Su aliado en su crecimiento financiero
+            </span>
           </span>
         </Link>
 
