@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { BLOG_POSTS, getPostBySlug, type BlogBlock } from "../lib/blog-posts";
 
-export const Route = createFileRoute("/blog/$slug")({
+export const Route = createFileRoute("/blog_/$slug")({
   loader: ({ params }) => {
     const post = getPostBySlug(params.slug);
     if (!post) throw notFound();
@@ -52,15 +52,23 @@ export const Route = createFileRoute("/blog/$slug")({
     <div className="container-page section-y text-center">
       <h1 className="font-display text-3xl font-bold text-primary">Artículo no encontrado</h1>
       <p className="mt-3 text-muted-foreground">El artículo que busca no existe o fue movido.</p>
-      <Link to="/blog" className="mt-6 inline-flex items-center gap-2 text-primary-light hover:text-primary">
+      <Link
+        to="/blog"
+        className="mt-6 inline-flex items-center gap-2 text-primary-light hover:text-primary"
+      >
         <ArrowLeft size={16} /> Volver al blog
       </Link>
     </div>
   ),
   errorComponent: ({ reset }) => (
     <div className="container-page section-y text-center">
-      <h1 className="font-display text-2xl font-semibold text-primary">No se pudo cargar el artículo</h1>
-      <button onClick={reset} className="mt-4 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90">
+      <h1 className="font-display text-2xl font-semibold text-primary">
+        No se pudo cargar el artículo
+      </h1>
+      <button
+        onClick={reset}
+        className="mt-4 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
+      >
         Reintentar
       </button>
     </div>
@@ -124,17 +132,26 @@ function BlogPostPage() {
     <>
       <section className="gradient-hero text-white">
         <div className="container-page py-16 md:py-20">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white"
+          >
             <ArrowLeft size={16} /> Volver al blog
           </Link>
           <span className="mt-6 inline-block rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wide">
             {post.category}
           </span>
-          <h1 className="mt-4 font-display text-3xl font-bold leading-tight md:text-4xl">{post.title}</h1>
+          <h1 className="mt-4 font-display text-3xl font-bold leading-tight md:text-4xl">
+            {post.title}
+          </h1>
           <p className="mt-4 max-w-3xl text-white/90">{post.excerpt}</p>
           <div className="mt-6 flex flex-wrap items-center gap-5 text-sm text-white/80">
-            <span className="inline-flex items-center gap-2"><Calendar size={14} /> {post.dateLabel}</span>
-            <span className="inline-flex items-center gap-2"><Clock size={14} /> {post.readingMinutes} min de lectura</span>
+            <span className="inline-flex items-center gap-2">
+              <Calendar size={14} /> {post.dateLabel}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Clock size={14} /> {post.readingMinutes} min de lectura
+            </span>
           </div>
         </div>
       </section>
@@ -144,15 +161,24 @@ function BlogPostPage() {
           {post.content.map((block: BlogBlock, idx: number) => renderBlock(block, idx))}
 
           <div className="mt-12 rounded-2xl border border-border bg-card p-6 shadow-card">
-            <h3 className="font-display text-lg font-semibold text-primary">¿Necesita ayuda con este tema?</h3>
+            <h3 className="font-display text-lg font-semibold text-primary">
+              ¿Necesita ayuda con este tema?
+            </h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              En Nexo Financiero CR asesoramos a PYMES, empresas agrícolas y agroindustriales en Costa Rica.
+              En Nexo Financiero CR asesoramos a PYMES, empresas agrícolas y agroindustriales en
+              Costa Rica.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Link to="/contacto" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90">
+              <Link
+                to="/contacto"
+                className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90"
+              >
                 Solicitar asesoría
               </Link>
-              <Link to="/cotizacion" className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2.5 text-sm font-medium hover:bg-accent/10">
+              <Link
+                to="/cotizacion"
+                className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2.5 text-sm font-medium hover:bg-accent/10"
+              >
                 Pedir cotización
               </Link>
             </div>
